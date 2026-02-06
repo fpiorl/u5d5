@@ -21,18 +21,18 @@ public class Runner implements CommandLineRunner {
 	public void run(String... args) {
 		Edificio edificio = edificioService.salva(new Edificio("Sede Centrale", "Via Spezia 1b", "Cerignola"));
 		Postazione postazione = postazioneService.salva(new Postazione("Open space", TipoPostazione.OPENSPACE, 2, edificio));
-		Utente utente1 = utenteService.salva(new Utente("Ilaria Salis", "occupyyourstreet", "salis@bur.go"));
-		Utente utente2 = utenteService.salva(new Utente("Varg Vikernes", "bzum", "asdadssa@mail.it"));
-		Utente utente3 = utenteService.salva(new Utente("Anna Bianchi", "abianchi", "anna@mail.it"));
+		Utente utente1 = utenteService.salva(new Utente("Ilaria Bianchi", "occupyyourstreet", "bianchi@gmail.com"));
+		Utente utente2 = utenteService.salva(new Utente("Luca Rossi", "bzum", "asdadssa@ukr.net"));
+		Utente utente3 = utenteService.salva(new Utente("mario Rossi", "m.rossi", "jeevacation@gmail.com"));
 
 		LocalDate oggi = LocalDate.now();
 
-		System.out.println("Postazioni OPENSPACE a Cerignola: " + postazioneService.findByTipoAndCitta(TipoPostazione.OPENSPACE, "Cerignola"));
-		System.out.println("Creo prenotazioni sulla stessa postazione...");
+		System.out.println("OPENSPACE a Cerignola: " + postazioneService.findByTipoAndCitta(TipoPostazione.OPENSPACE, "Cerignola"));
 		System.out.println(prenotazioneService.creaPrenotazione(utente1.getId(), postazione.getId(), oggi));
 		System.out.println(prenotazioneService.creaPrenotazione(utente2.getId(), postazione.getId(), oggi));
 
-		System.out.println("Provo a superare la capienza...");
+
+		System.out.println("prova errore");
 		try {
 			System.out.println(prenotazioneService.creaPrenotazione(utente3.getId(), postazione.getId(), oggi));
 		} catch (PrenotazioneNonValidaException e) {
